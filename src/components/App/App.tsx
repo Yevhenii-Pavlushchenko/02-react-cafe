@@ -6,6 +6,7 @@ import CafeInfo from '../CafeInfo/CafeInfo'
 import type { Votes, VoteType } from '../../types/votes'
 import VoteOptions from '../VoteOptions/VoteOptions'
 import VoteStats from '../VoteStats/VoteStats'
+import Notification from '../Notification/Notification'
 
 function App() {
   const [votes, setVotes] = useState<Votes>({
@@ -38,11 +39,15 @@ function App() {
           onReset={resetVotes}
           canReset={totalVotes > 0}
         />
-        <VoteStats
-          votes={votes}
+        {totalVotes > 0 ?
+          <VoteStats
+            votes={votes}
             totalVotes={totalVotes}
             positiveRate={positiveRate}
-        />
+            />
+          :
+           <Notification/>
+        }
     </div>
 
     </>
